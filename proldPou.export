@@ -1,0 +1,103 @@
+<ExportFile>
+  <StructuredView Guid="{d9b2b2cc-ea99-4c3b-aa42-1e5c49e65b84}">
+<Single xml:space="preserve" Type="{3daac5e4-660e-42e4-9cea-3711b98bfb63}" Method="IArchivable">
+  <Null Name="Profile" />
+  <List2 Name="EntryList">
+    <Single Type="{6198ad31-4b98-445c-927f-3258a0e82fe3}" Method="IArchivable">
+      <Single Name="IsRoot" Type="bool">True</Single>
+      <Single Name="MetaObject" Type="{81297157-7ec9-45ce-845e-84cab2b88ade}" Method="IArchivable">
+        <Single Name="Guid" Type="System.Guid">813ad4e6-dd8d-415e-913a-1a5973b50a1a</Single>
+        <Single Name="ParentGuid" Type="System.Guid">8eca3ee6-e6ad-4882-b42c-a01d2fcf5a04</Single>
+        <Single Name="Name" Type="string">POU</Single>
+        <Dictionary Type="{2c41fa04-1834-41c1-816e-303c7aa2c05b}" Name="Properties" />
+        <Single Name="TypeGuid" Type="System.Guid">6f9dac99-8de1-4efc-8465-68ac443b7d08</Single>
+        <Array Name="EmbeddedTypeGuids" Type="System.Guid">
+          <Single Type="System.Guid">a9ed5b7e-75c5-4651-af16-d2c27e98cb94</Single>
+          <Single Type="System.Guid">3b83b776-fb25-43b8-99f2-3c507c9143fc</Single>
+        </Array>
+        <Single Name="Timestamp" Type="long">639074752587307939</Single>
+      </Single>
+      <Single Name="Object" Type="{6f9dac99-8de1-4efc-8465-68ac443b7d08}" Method="IArchivable">
+        <Single Name="SpecialFunc" Type="{0db3d7bb-cde0-4416-9a7b-ce49a0124323}">None</Single>
+        <Single Name="Implementation" Type="{3b83b776-fb25-43b8-99f2-3c507c9143fc}" Method="IArchivable">
+          <Single Name="TextDocument" Type="{f3878285-8e4f-490b-bb1b-9acbb7eb04db}" Method="IArchivable">
+            <Single Name="TextBlobForSerialisation" Type="string">
+IF GVL.xSystemRunning THEN
+
+    // 1.  Heartbeat: Fires every 4 seconds
+    tonGenTimer(IN := NOT tonGenTimer.Q, PT := T#4S);
+    
+    // 2. The "Stretcher": Catches the heartbeat and stays ON for 1 solid second
+    tpSensorHold(IN := tonGenTimer.Q, PT := T#1S);
+    
+    // 3. Cycle the Item Type (1 -&gt; 2 -&gt; 3)
+    IF tonGenTimer.Q THEN
+        GVL.iItemType := GVL.iItemType + 1;
+        IF GVL.iItemType &gt; 3 THEN 
+            GVL.iItemType := 1; 
+        END_IF
+    END_IF
+    
+    // 4. Turn the correct sensor ON
+    IF tpSensorHold.Q THEN
+        CASE GVL.iItemType OF
+            1: 
+                GVL.xSensor1 := TRUE;
+                GVL.xSensor2 := FALSE;
+                GVL.xSensor3 := FALSE;
+            2: 
+                GVL.xSensor1 := FALSE;
+                GVL.xSensor2 := TRUE;
+                GVL.xSensor3 := FALSE;
+            3: 
+                GVL.xSensor1 := FALSE;
+                GVL.xSensor2 := FALSE;
+                GVL.xSensor3 := TRUE;
+        END_CASE
+    ELSE
+        GVL.xSensor1 := FALSE;
+        GVL.xSensor2 := FALSE;
+        GVL.xSensor3 := FALSE;
+    END_IF
+
+ELSE
+    // IF THE SYSTEM IS OFF: Reset everything
+    tonGenTimer(IN := FALSE, PT := T#4S);
+    tpSensorHold(IN := FALSE, PT := T#1S);
+    GVL.xSensor1 := FALSE;
+    GVL.xSensor2 := FALSE;
+    GVL.xSensor3 := FALSE;
+END_IF</Single>
+            <Single Name="LineInfoPersistence" Type="string">813ad4e6-dd8d-415e-913a-1a5973b50a1a_Impl_LineIds</Single>
+          </Single>
+        </Single>
+        <Single Name="Interface" Type="{a9ed5b7e-75c5-4651-af16-d2c27e98cb94}" Method="IArchivable">
+          <Single Name="TextDocument" Type="{f3878285-8e4f-490b-bb1b-9acbb7eb04db}" Method="IArchivable">
+            <Single Name="TextBlobForSerialisation" Type="string">PROGRAM POU
+
+VAR
+    tonGenTimer  : TON; // The "Heartbeat" timer
+    tpSensorHold : TP;  // Holds the sensor on 
+
+
+END_VAR</Single>
+            <Single Name="LineInfoPersistence" Type="string">813ad4e6-dd8d-415e-913a-1a5973b50a1a_Decl_LineIds</Single>
+          </Single>
+        </Single>
+        <Single Name="UniqueIdGenerator" Type="string">95</Single>
+        <Single Name="POULevel" Type="{8e575c5b-1d37-49c6-941b-5c0ec7874787}">Standard</Single>
+        <List Name="ChildObjectGuids" Type="System.Collections.ArrayList" />
+        <Single Name="AddAttributeSubsequent" Type="bool">False</Single>
+      </Single>
+      <Single Name="ParentSVNodeGuid" Type="System.Guid">8eca3ee6-e6ad-4882-b42c-a01d2fcf5a04</Single>
+      <Array Name="Path" Type="string">
+        <Single Type="string">Device</Single>
+        <Single Type="string">PLC Logic</Single>
+        <Single Type="string">Application</Single>
+      </Array>
+      <Single Name="Index" Type="int">-1</Single>
+    </Single>
+  </List2>
+  <Single Name="ProfileName" Type="string">CODESYS V3.5 SP21 Patch 4</Single>
+</Single>  </StructuredView>
+</ExportFile>
