@@ -1,8 +1,10 @@
 # Automated 3-Bin Conveyor Sorting System
 
+![CODESYS](https://img.shields.io/badge/CODESYS-V3.5-blue) ![Ladder Logic](https://img.shields.io/badge/Ladder%20Logic-LD-orange) ![IEC 61131-3](https://img.shields.io/badge/IEC%2061131--3-ST%20%7C%20LD-blueviolet) ![PLC](https://img.shields.io/badge/PLC-Automation-teal) ![License](https://img.shields.io/badge/License-MIT-brightgreen)
+
 A PLC control program for an automated conveyor sorting line, developed in CODESYS. The main machine logic is written entirely in IEC 61131-3 Ladder Diagram (LD), demonstrating standard industrial motor control, sensor-based routing, and robust safety interlocking.
 
-This project simulates a high-speed sorting belt where incoming items are identified by photo-eye sensors and routed into appropriate bins using pneumatic pushers. 
+This project simulates a high-speed sorting belt where incoming items are identified by photo-eye sensors and routed into appropriate bins using pneumatic pushers.
 
 ## Key Engineering Features
 
