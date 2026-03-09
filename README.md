@@ -19,12 +19,7 @@ This project simulates a high-speed sorting belt where incoming items are identi
 * **Environment:** CODESYS V3.5
 * **Primary Control Logic:** IEC 61131-3 Ladder Diagram (LD)
 * **Simulation Engine:** IEC 61131-3 Structured Text (ST)
-* **Core Concepts:** Latching Circuits, Pulse Timers, Comparator Logic, Boolean Algebra, Safety Interlocking, Hardware Simulation.
-
-## Logic Overview
-
-*(Note: Replace this text with a screenshot of your clean Ladder Logic—specifically the network showing the Start/Stop latch, and one of your pusher networks with the TP timer. Employers love seeing well-structured, readable ladder code!)*
-[Insert Screenshot of Ladder Logic here]
+* **Core Concepts:** Latching Circuits, Pulse Timers, Comparator Logic, Boolean Algebra, Safety Interlocking, Hardware Simulation
 
 ## How to Run the Simulation
 
